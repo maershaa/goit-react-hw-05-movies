@@ -1,6 +1,6 @@
-import axios from 'axios'; //npm install axios
-import React, { useEffect, useState } from 'react';
-import { NavLink, Route, Routes, useParams } from 'react-router-dom';
+// import axios from 'axios'; //npm install axios
+// import React,{ useEffect, useState } from 'react';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import Cast from 'pages/Cast';
 import Reviews from 'pages/Reviews';
 
