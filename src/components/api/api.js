@@ -7,7 +7,7 @@ const fetchMovies = async (searchQuery, page = 1, perPage = 12) => {
   try {
     const params = {
       key: API_KEY,
-      append_to_response,
+      //   append_to_response: 98989,
       q: searchQuery,
       //   page,
       //   per_page: perPage,
