@@ -4,8 +4,8 @@ import Loader from 'components/Loader/Loader'; //npm install react-loader-spinne
 import { StyledLayout } from 'components/Layout/StyledLayout';
 
 const Layout = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [isLoading] = useState(false);
+  const [error] = useState(null);
 
   return (
     <Suspense fallback={<Loader />}>
