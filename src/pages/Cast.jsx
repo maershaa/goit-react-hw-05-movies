@@ -1,7 +1,18 @@
-import React from 'react';
+// import React, { useState, useEffect, useParams } from 'react';
+// import ActorsList from 'components/ActorsList/ActorsList';
 
-const Cast = () => {
-  return <div>Cast</div>;
-};
+// const Cast = () => {
+//   const { movieId } = useParams();
+//   useEffect(() => {
+//     if (!movieId) return;
+//   }, [movieId]);
 
-export default Cast;
+//   return (
+//     <div>
+//       <h2> Cast </h2> {/* Cast = актерский состав */}
+//       <ActorsList></ActorsList>
+//     </div>
+//   );
+// };
+
+// export default Cast;

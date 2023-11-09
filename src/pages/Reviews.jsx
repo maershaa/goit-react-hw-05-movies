@@ -1,7 +1,12 @@
-import React from 'react';
+// import React, { useEffect, useParams } from 'react';
 
-const Reviews = () => {
-  return <div>Reviews</div>;
-};
+// const Reviews = () => {
+//   const { movieId } = useParams();
+//   useEffect(() => {
+//     if (!movieId) return;
+//   }, [movieId]);
 
-export default Reviews;
+//   return <div>Reviews</div>;
+// };
+
+// export default Reviews;

@@ -1,20 +1,15 @@
 import axios from 'axios'; //npm install axios
 
-const BASE_URL = 'https://api.themoviedb.org/3/search/movie';
+const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = 'c23a5d8272617f6f7021ba4c498464ff';
 
-const fetchMovies = async (searchQuery, page = 1, perPage = 12) => {
+const fetchMovies = async () => {
   try {
-    const params = {
-      key: API_KEY,
-      //   append_to_response: 98989,
-      q: searchQuery,
-      //   page,
-      //   per_page: perPage,
-    };
-    const response = await axios.get(BASE_URL, { params });
+    const response = await axios.get(
+      // Получение списка популярных фильмов за неделю
+      `${BASE_URL}trending/all/week?api_key=${API_KEY}`
+    );
     console.log('response in api', response);
-    console.log('searchQuery', searchQuery);
     return response.data;
   } catch (error) {
     throw error;

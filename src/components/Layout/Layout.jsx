@@ -1,0 +1,42 @@
+import React, { Suspense, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
+import { StyledLayout } from 'components/Layout/StyledLayout';
+
+const Layout = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  return (
+    <Suspense fallback={<Loader />}>
+      <StyledLayout>
+        {error !== null && (
+          <p className="errorBadge">
+            Oops, some error occurred... Error message: {error}
+          </p>
+        )}
+
+        {isLoading && <Loader />}
+
+        <header className="headerContainer">
+          <ul className="list">
+            <li>
+              <NavLink className="headerLink" to="/">
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="headerLink" to="/movies">
+                Movies
+              </NavLink>
+            </li>
+          </ul>
+        </header>
+
+        <main>{children}</main>
+      </StyledLayout>
+    </Suspense>
+  );
+};
+
+export default Layout;

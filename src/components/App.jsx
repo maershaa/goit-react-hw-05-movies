@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
-import { Routes, Route, NavLink } from 'react-router-dom';
-import HomePage from 'pages/HomePage';
-import Movies from 'pages/Movies';
-import MovieDetails from 'pages/MovieDetails';
-import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
+import React from 'react';
+import { lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Layout from 'components/Layout/Layout';
+
+// import HomePage from 'pages/HomePage';
+// import Movies from 'pages/Movies';
+// import MovieDetails from 'pages/MovieDetails';
+
+const HomePage = lazy(() => import('pages/HomePage'));
+const Movies = lazy(() => import('pages/Movies'));
+const MovieDetails = lazy(() => import('pages/MovieDetails'));
+
 // rafce - react arrow function expression component export default
 
 /*
@@ -29,79 +36,13 @@ import Loader from 'components/Loader/Loader'; //npm install react-loader-spinne
    для навігації всередині нашого додатку.
 */
 export const App = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [inputValue, setInputValue] = useState('');
-
-  //   // Функция для выполнения запроса и обновления фотографий
-  // async fetchAndSetPhotos(inputValue, currentPage = 1) {
-  //   try {
-  //     // Устанавливаем isLoading в true перед началом запроса
-  //     this.setState({ isLoading: true });
-
-  //     // Выполняем запрос к API с переданным поисковым запросом и номером страницы
-  //     const data = await fetchPhotos(inputValue, currentPage);
-
-  //     // При успешном запросе, добавляем новые фотографии к текущим
-  //     const currentPhotos = this.state.photos || []; // Существующие фотографии
-  //     const newPhotos = data.hits; // Новые фотографии
-
-  //     const updatedPhotos = [...currentPhotos, ...newPhotos]; // Объединяем их
-
-  //     this.setState({ photos: updatedPhotos, error: null });
-  //   } catch (error) {
-  //     // В случае ошибки сохраняем сообщение об ошибке и очищаем фотографии
-  //     this.setState({ error: error.message, photos: null });
-  //   } finally {
-  //     // В любом случае завершаем запрос, сбрасывая флаг isLoading
-  //     this.setState({ isLoading: false });
-  //   }
-  // }
-
-  // componentDidUpdate(_, prevState) {
-  //   const { inputValue, currentPage } = this.state;
-  //   if (
-  //     prevState.inputValue !== this.state.inputValue ||
-  //     prevState.currentPage !== this.state.currentPage
-  //   ) {
-  //     this.fetchAndSetPhotos(inputValue, currentPage);
-  //   }
-  // }
-
   return (
-    <div>
-      {error !== null && (
-        <p className="errorBadge">
-          Oops, some error occurred... Error message: {error}
-        </p>
-      )}
-
-      {isLoading && <Loader />}
-
-      <header>
-        <ul>
-          <li>
-            <NavLink className="header-link" to="/">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="header-link" to="/movies">
-              Movies
-            </NavLink>
-          </li>
-        </ul>
-      </header>
-
-      <main>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-
-          <Route path="/movies" element={<Movies />} />
-
-          <Route path="/movies/:movieId/*" element={<MovieDetails />} />
-        </Routes>
-      </main>
-    </div>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/:movieId/*" element={<MovieDetails />} />
+      </Routes>
+    </Layout>
   );
 };

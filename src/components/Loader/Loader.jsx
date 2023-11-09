@@ -1,15 +1,19 @@
 import { Hearts } from 'react-loader-spinner';
+import { StyledLoader } from 'components/Loader/StyledLoader';
+
 const Loader = () => {
   return (
-    <Hearts
-      height="80"
-      width="80"
-      color="#369baf"
-      ariaLabel="hearts-loading"
-      wrapperStyle={{}}
-      wrapperClass=""
-      visible={true}
-    />
+    <StyledLoader>
+      <Hearts
+        height="120"
+        width="120"
+        color="#369baf"
+        ariaLabel="hearts-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+      />
+    </StyledLoader>
   );
 };
 
