@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import fetchMovies from 'components/api/api';
 import MoviesList from 'components/MoviesList/MoviesList';
 import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
@@ -10,13 +11,22 @@ const HomePage = () => {
   // const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState(null); // Состояние для хранения
 
+  const navigate = useNavigate();
+  const handleMovieClick = movieId => {
+    navigate(`/movies/${movieId}`);
+  };
+
+  //  const getMovieById = productId => {
+  //    return products.find(product => product.id === productId);
+  //  };
+
   // Функция для выполнения запроса и обновления фотографий
-  const fetchAndSetMovies = async () => {
+  const fetchAndSetMovies = async url => {
     try {
       setIsLoading(true); // Устанавливаем флаг загрузки в true
       setError(null); // Сбрасываем сообщение об ошибке
 
-      const data = await fetchMovies(); // Выполняем запрос к API
+      const data = await fetchMovies('trending/all/week'); // Выполняем запрос к API
 
       const movies = data.results; // Получаем новые фильмы
 
@@ -34,8 +44,6 @@ const HomePage = () => {
     fetchAndSetMovies();
   }, []);
 
-  const handleImageClick = event => {};
-
   return (
     <div>
       {error !== null && (
@@ -47,7 +55,7 @@ const HomePage = () => {
       {isLoading && <Loader />}
 
       <h2 className="pageTitle"> Trending today </h2>
-      <MoviesList movies={movies} onClick={handleImageClick} />
+      <MoviesList movies={movies} onClick={handleMovieClick} />
     </div>
   );
 };

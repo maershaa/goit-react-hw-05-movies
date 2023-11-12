@@ -42,7 +42,8 @@ export const StyledLayout = styled.div`
   .headerLink:hover,
   .headerLink:focus {
     cursor: pointer;
-    transform: translate();
+    transform: scale(1.1); /* Измените масштаб по вашему усмотрению */
+    transition: transform 0.3s ease; /* Добавьте плавное переходное свойство */
   }
 
   .headerLink.active {

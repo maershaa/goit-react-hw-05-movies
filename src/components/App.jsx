@@ -1,5 +1,4 @@
-import React from 'react';
-import { lazy } from 'react';
+import React, { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from 'components/Layout/Layout';
 
@@ -10,6 +9,7 @@ import Layout from 'components/Layout/Layout';
 const HomePage = lazy(() => import('pages/HomePage'));
 const Movies = lazy(() => import('pages/Movies'));
 const MovieDetails = lazy(() => import('pages/MovieDetails'));
+const NotFound = lazy(() => import('pages/NotFound'));
 
 // rafce - react arrow function expression component export default
 
@@ -42,6 +42,7 @@ export const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:movieId/*" element={<MovieDetails />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
   );

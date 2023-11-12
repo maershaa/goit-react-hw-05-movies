@@ -1,20 +1,31 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Импортируем useNavigate
+import { StyledMovieListItem } from 'components/MoviesList/MovieItem/StylesdMovieListItem';
+import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
 
-const MovieItem = ({ id, poster_path, title, onClick }) => {
-  const handleMovieClick = () => {
-    if (onClick) {
-      onClick(id);
-    }
+const MovieItem = ({ id, poster_path, title, overview, onClick }) => {
+  const navigate = useNavigate(); // Инициализируем useNavigate
+
+  const handleItemClick = () => {
+    // При нажатии на элемент списка фильмов, перенаправляем пользователя на страницу с деталями фильма
+    navigate(`/movies/${id}`);
   };
 
   return (
-    <li className="movieItem" onClick={handleMovieClick}>
-      <h3>{title}</h3>
+    // Используем стилизованный компонент для элемента списка фильма
+    <StyledMovieListItem className="movieItem" onClick={handleItemClick}>
+      {/* Отображаем постер фильма */}
       <img
         src={`https://image.tmdb.org/t/p/original${poster_path}`}
         alt={title}
+        style={{ height: '260px' }}
       />
-    </li>
+      {/* Контейнер для заголовка и описания фильма */}
+      <div className="itemContainer">
+        <h3>{title}</h3>
+        <p className="overviewText">{overview}</p>
+      </div>
+    </StyledMovieListItem>
   );
 };
 
