@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; // Импортируем useNavigate
 import { StyledMovieListItem } from 'components/MoviesList/MovieItem/StylesdMovieListItem';
-import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
 
 const MovieItem = ({ id, poster_path, title, overview, onClick }) => {
   const navigate = useNavigate(); // Инициализируем useNavigate

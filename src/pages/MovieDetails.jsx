@@ -91,15 +91,18 @@ const MovieDetails = () => {
     tagline,
   } = movieDetails;
 
+  // Создаем стиль для фона, используя линейный градиент и изображение фона из API
   const backgroundImageStyles = {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${backdrop_path})`,
   };
 
+  // Функция для округления рейтинга до одной десятой
   const calculateRoundedRating = rating => {
     const numericRating = Number(rating);
     return numericRating.toFixed(1);
   };
 
+  // Функция для расчета продолжительности фильма в часах и минутах
   const calculateRuntime = runtime => {
     const numericRuntime = Number(runtime);
     const hours = Math.floor(numericRuntime / 60);
@@ -107,14 +110,18 @@ const MovieDetails = () => {
     return { hours, minutes };
   };
 
+  // Функция для извлечения года из даты выпуска фильма
   const extractReleaseYear = releaseDate => {
     return new Date(releaseDate).getFullYear();
   };
 
+  // Расчет округленного рейтинга на основе полученного рейтинга из API
   const roundedRating = calculateRoundedRating(vote_average);
 
+  // Расчет продолжительности фильма в часах и минутах на основе полученных данных из API
   const { hours, minutes } = calculateRuntime(runtime);
 
+  // Извлечение года выпуска фильма из даты, полученной из API
   const releaseYear = extractReleaseYear(release_date);
 
   return (

@@ -1,19 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MovieItem from 'components/MoviesList/MovieItem/MovieItem';
 import { useNavigate } from 'react-router-dom';
 
 // Компонент для отображения списка фильмов
-const MoviesList = ({ movies, onClick }) => {
-  // Состояния для управления состоянием загрузки, ошибок и данных фильмов
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  //Состояние для хранения дополнительных данных о выбранном фильме
-  const [moviesData, setMoviesData] = useState(null);
-
-  // Состояние для хранения выбранного фильма
-  const [chosenMovie, setChosenMovie] = useState(null);
-
+const MoviesList = ({ movies }) => {
   // Хук навигации из React Router для перехода на другие страницы
   const navigate = useNavigate();
   const handleMovieClick = movieId => {
