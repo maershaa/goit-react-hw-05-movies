@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {
-  NavLink,
+  Link,
   Route,
   Routes,
   useLocation,
   useParams,
+  Outlet,
 } from 'react-router-dom';
 import Cast from 'pages/Cast';
 import Reviews from 'pages/Reviews';
@@ -149,8 +150,6 @@ const MovieDetails = () => {
             {title} ( {releaseYear})
           </h2>
 
-          <p></p>
-
           <p className="slogan">{tagline}</p>
           <p>
             Rating: {roundedRating} &bull; Duration: {`${hours}h ${minutes}m`}
@@ -166,18 +165,20 @@ const MovieDetails = () => {
           </ul>
           <h3>Additional Information</h3>
           <ul>
-            <li>Cast</li>
-            <li>Reviews</li>
+            <li>
+              <Link className="header-link" to="cast">
+                Cast
+              </Link>
+            </li>
+            <li>
+              <Link className="header-link" to="reviews">
+                Reviews
+              </Link>
+            </li>
           </ul>
-          <NavLink className="header-link" to="cast">
-            Состав
-          </NavLink>
-          <Routes>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
-          </Routes>
         </div>
       </div>
+      <Outlet />
     </StyledMovieDetails>
   );
 };

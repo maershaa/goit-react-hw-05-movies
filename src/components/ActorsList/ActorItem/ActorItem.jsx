@@ -1,12 +1,19 @@
 import React from 'react';
+import { StyledActorItem } from 'components/ActorsList/ActorItem/StyledActorItem';
 
-const ActorItem = (id, name, character) => {
+const ActorItem = ({ id, profile_path, name, character }) => {
+  const imageUrl = profile_path
+    ? // !! Почему не подтягивается фото актера?
+      `https://www.themoviedb.org/t/p/w240_and_h266_face${profile_path}`
+    : 'https://lmm.in.ua/image/cache/catalog/image/cache/catalog/3/7/9/3796/1-650x650.webp'; //заглушка
+  console.log(imageUrl);
+
   return (
-    <li class="actorItem">
-      <img src="#" alt={name} width="264" />
-      <h3>Name of the actor: {name}</h3>
-      <p> Character: {character}</p>
-    </li>
+    <StyledActorItem className="actorItem">
+      <img src={imageUrl} alt={name} width="264" />
+      <h3 className="actorsName"> {name}</h3>
+      <p className="text"> {character}</p>
+    </StyledActorItem>
   );
 };
 
