@@ -20,7 +20,7 @@ const HomePage = () => {
   //    return products.find(product => product.id === productId);
   //  };
 
-  // Функция для выполнения запроса и обновления фотографий
+  // Функция для выполнения запроса
   const fetchAndSetMovies = async url => {
     try {
       setIsLoading(true); // Устанавливаем флаг загрузки в true

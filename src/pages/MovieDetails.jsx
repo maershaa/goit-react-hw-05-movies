@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Link,
-  Route,
-  Routes,
-  useLocation,
-  useParams,
-  Outlet,
-} from 'react-router-dom';
-import Cast from 'pages/Cast';
-import Reviews from 'pages/Reviews';
+import { Link, useLocation, useParams, Outlet } from 'react-router-dom';
+// import Cast from 'pages/Cast';
+// import Reviews from 'pages/Reviews';
 import fetchMovies from 'components/api/api';
 import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
 
