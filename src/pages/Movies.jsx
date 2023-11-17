@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import fetchMovies from 'components/api/api';
 import MoviesList from 'components/MoviesList/MoviesList';
 import SearchBox from 'components/SearchBox/SearchBox';
@@ -7,31 +7,28 @@ import Loader from 'components/Loader/Loader';
 import GoBackBtn from 'components/GoBackBtn/GoBackBtn';
 
 const Movies = () => {
-  // Использование хуков useState для управления состоянием компонента
   const [isLoading, setIsLoading] = useState(false); // Состояние для отслеживания загрузки данных
   const [error, setError] = useState(null); // Состояние для отслеживания ошибок
   const [inputValue, setInputValue] = useState(''); // Состояние для хранения значения ввода поиска
   const [movies, setMovies] = useState(null); // Состояние для хранения списка фильмов
-
   const navigate = useNavigate(); // Хук для навигации по маршрутам
+  const [searchParams, setSearchParams] = useSearchParams(); // Хук для работы с параметрами строки запроса
+  const query = searchParams.get('query'); // Получаем значение параметра 'query'
 
   // Функция для получения списка фильмов по поисковому запросу
-  const fetchMoviesBySearchQuery = async (inputValue, currentPage) => {
+  const fetchMoviesBySearchQuery = async (queryValue, currentPage) => {
     try {
       setIsLoading(true); // Устанавливаем флаг загрузки в true перед запросом
       setError(null); // Сбрасываем состояние ошибки перед запросом
 
-      // Вызываем функцию fetchMovies для получения списка фильмов по запросу
       const data = await fetchMovies(`search/movie`, {
-        query: inputValue, // Запрос поискового запроса
-        include_adult: false, // Указание на включение взрослого контента (false для исключения)
-        language: 'en-US', // Язык результатов поиска
-        page: currentPage, // Номер страницы результатов поиска
+        query: queryValue,
+        include_adult: false,
+        language: 'en-US',
+        page: currentPage,
       });
 
       setMovies(data.results); // Устанавливаем полученный список фильмов в состояние
-      console.log('data.results', data.results);
-
       setError(null); // Сбрасываем состояние ошибки
     } catch (error) {
       setError(error.message); // Устанавливаем сообщение об ошибке в состояние
@@ -41,12 +38,21 @@ const Movies = () => {
     }
   };
 
+  // useEffect для обработки изменения параметра запроса 'query'
+  useEffect(() => {
+    if (query) {
+      setInputValue(query); // Устанавливаем значение из параметра запроса в состояние ввода
+      fetchMoviesBySearchQuery(query, 1); // Вызов функции для получения фильмов при изменении запроса
+    }
+  }, [query]);
+
   // Функция для обработки отправки поискового запроса
-  const handleSubmit = query => {
-    setMovies([]); // Очищаем список фильмов перед новым поиском
-    setInputValue(query); // Устанавливаем в состояние значение поискового запроса
-    console.log('query', query);
-    fetchMoviesBySearchQuery(query, 1); // Вызов функции для получения фильмов по запросу (currentPage = 1)
+  const handleSubmit = value => {
+    if (!value) return; // Если значение пустое, прекращаем выполнение
+
+    setInputValue(value); // Устанавливаем значение поискового запроса в состояние ввода
+    setSearchParams({ query: value }); // Записываем слово для поиска в параметры строки запроса
+    fetchMoviesBySearchQuery(value, 1); // Вызов функции для получения фильмов по запросу
   };
 
   // Функция для обработки нажатия на фильм и навигации к его странице
@@ -66,7 +72,8 @@ const Movies = () => {
       {/* Отображение индикатора загрузки, если данные загружаются */}
       {isLoading && <Loader />}
 
-      <GoBackBtn></GoBackBtn>
+      {/* Кнопка для возврата на предыдущую страницу */}
+      <GoBackBtn />
 
       {/* Компонент SearchBox для ввода поискового запроса */}
       <SearchBox
@@ -76,7 +83,7 @@ const Movies = () => {
       />
 
       {/* Отображение списка фильмов, если он не пуст и содержит более одного фильма */}
-      {movies && movies.length > 1 && (
+      {movies && movies.length > 0 && (
         <MoviesList movies={movies} onClick={handleMovieClick} />
       )}
     </>
