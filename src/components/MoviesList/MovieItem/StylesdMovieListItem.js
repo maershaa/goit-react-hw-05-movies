@@ -10,4 +10,8 @@ export const StyledMovieListItem = styled.li`
     padding-left: 20px;
     padding-right: 20px;
   }
+
+  .moviePoster {
+    border-radius: 10px;
+  }
 `;

@@ -1,6 +1,7 @@
 import React from 'react';
 import MovieItem from 'components/MoviesList/MovieItem/MovieItem';
 import { useNavigate } from 'react-router-dom';
+import { StyledMovieList } from 'components/MoviesList/StyledMovieList';
 
 // Компонент для отображения списка фильмов
 const MoviesList = ({ movies }) => {
@@ -11,7 +12,7 @@ const MoviesList = ({ movies }) => {
   };
 
   return (
-    <ul className="moviesList">
+    <StyledMovieList className="moviesList">
       {/* Проверка, что массив movies не является null или undefined */}
       {movies &&
         // Отображаем каждый элемент списка фильмов
@@ -26,7 +27,7 @@ const MoviesList = ({ movies }) => {
             onClick={() => handleMovieClick(movie.id)}
           ></MovieItem>
         ))}
-    </ul>
+    </StyledMovieList>
   );
 };
 

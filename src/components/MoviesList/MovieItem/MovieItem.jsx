@@ -18,6 +18,7 @@ const MovieItem = ({ id, poster_path, title, overview, onClick }) => {
         src={`https://image.tmdb.org/t/p/original${poster_path}`}
         alt={title}
         style={{ height: '260px' }}
+        className="moviePoster"
       />
       {/* Контейнер для заголовка и описания фильма */}
       <div className="itemContainer">

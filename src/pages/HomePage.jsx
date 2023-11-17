@@ -16,10 +16,6 @@ const HomePage = () => {
     navigate(`/movies/${movieId}`);
   };
 
-  //  const getMovieById = productId => {
-  //    return products.find(product => product.id === productId);
-  //  };
-
   // Функция для выполнения запроса
   const fetchAndSetMovies = async url => {
     try {
