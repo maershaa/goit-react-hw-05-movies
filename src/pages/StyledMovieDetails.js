@@ -30,40 +30,6 @@ export const StyledMovieDetails = styled.div`
     font-style: italic;
   }
 
-  .backBtn {
-    cursor: pointer;
-    text-decoration: none;
-    background: #373b44; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to right,
-      #4286f4,
-      #373b44
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-      112.1deg,
-      rgb(32, 38, 57) 11.4%,
-      rgb(63, 76, 119) 70.2%
-    );
-    font-size: 18px;
-    color: white;
-    padding: 15px;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    display: inline-flex;
-    border: 1px solid #373b44;
-    border-radius: 10px;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      -webkit-transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .backBtn:hover,
-  .backBtn:focus {
-    cursor: pointer;
-    transform: scale(1.1); /* Измените масштаб по вашему усмотрению */
-    transition: transform 0.3s ease; /* Добавьте плавное переходное свойство */
-  }
-
   .genresList {
     display: flex;
     flex-direction: row;

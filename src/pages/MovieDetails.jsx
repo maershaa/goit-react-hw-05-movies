@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useParams, Outlet } from 'react-router-dom';
+import { Link, useParams, Outlet } from 'react-router-dom';
 // import Cast from 'pages/Cast';
 // import Reviews from 'pages/Reviews';
 import fetchMovies from 'components/api/api';
 import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
+import GoBackBtn from 'components/GoBackBtn/GoBackBtn';
 
 import { StyledMovieDetails } from 'pages/StyledMovieDetails';
 const MovieDetails = () => {
@@ -16,20 +17,6 @@ const MovieDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   // Состояние для обработки ошибок
   const [error, setError] = useState(null);
-
-  // Получение объекта location из React Router
-  const location = useLocation();
-
-  // Функция для возврата на предыдущую страницу
-  const handleGoBack = () => {
-    if (location.state && location.state.from) {
-      // Вернуться на предыдущий маршрут, если возможно
-      window.location.href = location.state.from;
-    } else {
-      // Вернуться на дефолтный маршрут, если информация о предыдущем местоположении отсутствует
-      window.location.href = '/';
-    }
-  };
 
   // Функция для запроса детальной информации о выбранном фильме
   const fetchChosenMovie = async id => {
@@ -67,7 +54,7 @@ const MovieDetails = () => {
     fetchChosenMovie(movieId);
   }, [movieId]);
 
-  // Проверка, есть ли данные в movieDetails перед их отображением
+  // !!!!Проверка, есть ли данные в movieDetails перед их отображением  КАК РЕАЛИЗОВАТЬ ИНАЧЕ?
   if (!movieDetails) {
     return <p>Loading...</p>;
   }
@@ -126,10 +113,8 @@ const MovieDetails = () => {
         </p>
       )}
       {isLoading && <Loader />}
+      <GoBackBtn></GoBackBtn>
       <h1> Movie Id: {movieId}</h1> {/* !Заглушка для проверки movieId */}
-      <button onClick={handleGoBack} className="backBtn">
-        Назад
-      </button>
       <div className="movieInfoContainer" style={backgroundImageStyles}>
         {/* Отображаем постер фильма */}
         <img

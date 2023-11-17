@@ -28,4 +28,8 @@ export const StyledActorItem = styled.li`
   .actorsName {
     font-size: 14px;
   }
+
+  .imgActor {
+    border-radius: 10px;
+  }
 `;

@@ -8,7 +8,7 @@ const ActorsList = ({ actors }) => {
       {actors.map(actor => (
         <ActorItem
           key={actor.id}
-          actorImg={actor.profile_path}
+          profile_path={actor.profile_path}
           name={actor.name}
           character={actor.character}
         ></ActorItem>

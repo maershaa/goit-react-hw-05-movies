@@ -23,7 +23,7 @@ const MoviesList = ({ movies }) => {
             title={movie.title}
             overview={movie.overview}
             // Используем функцию для загрузки выбранного фильма при клике
-            onClick={() => handleMovieClick}
+            onClick={() => handleMovieClick(movie.id)}
           ></MovieItem>
         ))}
     </ul>
