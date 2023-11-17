@@ -10,7 +10,6 @@ import { StyledMovieDetails } from 'pages/StyledMovieDetails';
 const MovieDetails = () => {
   // Извлечение movieId из параметров URL
   const { movieId } = useParams();
-
   // Состояние для хранения детальной информации о фильме
   const [movieDetails, setMovieDetails] = useState(null);
   // Состояние для отслеживания состояния загрузки
@@ -56,7 +55,7 @@ const MovieDetails = () => {
 
   // !!!!Проверка, есть ли данные в movieDetails перед их отображением  КАК РЕАЛИЗОВАТЬ ИНАЧЕ?
   if (!movieDetails) {
-    return <p>Loading...</p>;
+    return;
   }
 
   // Деструктуризация данных из movieDetails
