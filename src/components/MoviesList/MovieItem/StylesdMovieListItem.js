@@ -6,7 +6,7 @@ export const StyledMovieListItem = styled.li`
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px;
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px; */
 
   /* Стили для контейнера карточки */
   .movieCard {
