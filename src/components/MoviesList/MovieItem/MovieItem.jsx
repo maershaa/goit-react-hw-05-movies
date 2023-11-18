@@ -1,29 +1,46 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Импортируем useNavigate
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { StyledMovieListItem } from 'components/MoviesList/MovieItem/StylesdMovieListItem';
 
-const MovieItem = ({ id, poster_path, title, overview, onClick }) => {
-  const navigate = useNavigate(); // Инициализируем useNavigate
+const MovieItem = ({ id, poster_path, title, overview }) => {
+  const navigate = useNavigate();
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleItemClick = () => {
-    // При нажатии на элемент списка фильмов, перенаправляем пользователя на страницу с деталями фильма
     navigate(`/movies/${id}`);
   };
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   return (
-    // Используем стилизованный компонент для элемента списка фильма
-    <StyledMovieListItem className="movieItem" onClick={handleItemClick}>
-      {/* Отображаем постер фильма */}
-      <img
-        src={`https://image.tmdb.org/t/p/original${poster_path}`}
-        alt={title}
-        style={{ height: '260px' }}
-        className="moviePoster"
-      />
-      {/* Контейнер для заголовка и описания фильма */}
-      <div className="itemContainer">
-        <h3>{title}</h3>
-        <p className="overviewText">{overview}</p>
+    <StyledMovieListItem
+      className={`movieItem ${isHovered ? 'hovered' : ''}`}
+      onClick={handleItemClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="movieCard">
+        <div className={`movieCardFront ${isHovered ? 'hovered' : ''}`}>
+          <img
+            src={`https://image.tmdb.org/t/p/original${poster_path}`}
+            alt={title}
+            className="moviePoster front"
+          />
+          <div className="itemContainer">
+            <h3 className="front">{title}</h3>
+          </div>
+        </div>
+        <div className={`movieCardBack ${isHovered ? 'hovered' : ''}`}>
+          <h3 className="front">{title}</h3>
+
+          <p className="overviewText back">{overview}</p>
+        </div>
       </div>
     </StyledMovieListItem>
   );
