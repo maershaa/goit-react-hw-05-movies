@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ActorsList from 'components/ActorsList/ActorsList';
 import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
-import fetchMovies from 'components/api/api';
+import getCastMovie from 'components/api/getCastMovie';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -12,10 +12,6 @@ const Cast = () => {
   const [error, setError] = useState(null);
   const [actorsDetails, setActorsDetails] = useState(null);
 
-  //   useEffect(() => {
-  //     if (!movieId) return;
-  //   }, [movieId]);
-
   const fetchActors = async id => {
     try {
       // Установить флаг загрузки в true перед запросом
@@ -23,13 +19,7 @@ const Cast = () => {
       // Сбросить состояние ошибки перед запросом
       setError(null);
       // Запрос к API для получения детальной информации о фильме по его ID
-      const data = await fetchMovies(
-        `movie/${id}/credits`,
-        // fetch('https://api.themoviedb.org/3/movie/872585/credits?language=en-US', options)
-        {
-          language: 'en-US',
-        }
-      );
+      const data = await getCastMovie(id);
       // Установка детальной информации о фильме в состояние
       setActorsDetails(data);
       console.log('actorsDetails.cast:', data.cast); // Добавляем вывод в консоль

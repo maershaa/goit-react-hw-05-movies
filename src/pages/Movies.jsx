@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import fetchMovies from 'components/api/api';
+import getSearchMovie from 'components/api/getSearchMovie'; // Используем новую функцию получения списка фильмов
 import MoviesList from 'components/MoviesList/MoviesList';
 import SearchBox from 'components/SearchBox/SearchBox';
 import Loader from 'components/Loader/Loader';
@@ -21,12 +21,7 @@ const Movies = () => {
       setIsLoading(true); // Устанавливаем флаг загрузки в true перед запросом
       setError(null); // Сбрасываем состояние ошибки перед запросом
 
-      const data = await fetchMovies(`search/movie`, {
-        query: queryValue,
-        include_adult: false,
-        language: 'en-US',
-        page: currentPage,
-      });
+      const data = await getSearchMovie(queryValue); // Используем новую функцию getSearchMovie для запроса
 
       setMovies(data); // Устанавливаем полученный список фильмов в состояние
       setError(null); // Сбрасываем состояние ошибки
@@ -52,9 +47,6 @@ const Movies = () => {
 
     setInputValue(value); // Устанавливаем значение поискового запроса в состояние ввода
     setSearchParams({ query: value }); // Записываем слово для поиска в параметры строки запроса
-
-    // !Добавляем console.log для проверки значения перед вызовом fetchMoviesBySearchQuery
-    console.log('Search query:', value);
 
     fetchMoviesBySearchQuery(value, 1); // Вызов функции для получения фильмов по запросу
   };

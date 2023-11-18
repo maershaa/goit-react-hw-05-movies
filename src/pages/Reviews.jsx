@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ReviewsList from 'components/ReviewsList/ReviewsList';
 import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
-import fetchMovies from 'components/api/api';
+import getReviewMovie from 'components/api/getReviewMovie';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -12,19 +12,14 @@ const Reviews = () => {
   const [error, setError] = useState(null);
   const [reviews, setReviews] = useState(null);
 
-  const fetchReviews = async (id, currentPage) => {
+  const fetchReviews = async (movieId, currentPage) => {
     try {
       // Установить флаг загрузки в true перед запросом
       setIsLoading(true);
       // Сбросить состояние ошибки перед запросом
       setError(null);
       // Запрос к API для получения детальной информации о фильме по его ID
-      const data = await fetchMovies(`movie/${id}/reviews`, {
-        language: 'en-US',
-        page: currentPage,
-      });
-      // fetch('https://api.themoviedb.org/3/movie/872585/reviews?language=en-US&page=1', options)
-
+      const data = await getReviewMovie(movieId);
       // Установка детальной информации о фильме в состояние
       setReviews(data);
       console.log('fetchReviews', data);

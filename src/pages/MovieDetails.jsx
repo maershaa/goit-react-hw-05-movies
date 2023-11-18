@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams, Outlet } from 'react-router-dom';
 // import Cast from 'pages/Cast';
 // import Reviews from 'pages/Reviews';
-import fetchMovies from 'components/api/api';
+import getFilmById from 'components/api/getFilmById';
 import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
 import GoBackBtn from 'components/GoBackBtn/GoBackBtn';
 
@@ -17,40 +17,31 @@ const MovieDetails = () => {
   // Состояние для обработки ошибок
   const [error, setError] = useState(null);
 
-  // Функция для запроса детальной информации о выбранном фильме
-  const fetchChosenMovie = async id => {
-    try {
-      // Установить флаг загрузки в true перед запросом
-      setIsLoading(true);
-      // Сбросить состояние ошибки перед запросом
-      setError(null);
-
-      // Запрос к API для получения детальной информации о фильме по его ID
-      const data = await fetchMovies(`movie/${id}`, {
-        params: {
-          language: 'en-US',
-        },
-      });
-
-      // Установка детальной информации о фильме в состояние
-      setMovieDetails(data);
-      // Сбросить состояние ошибки
-      setError(null);
-    } catch (error) {
-      // Установка состояния ошибки в случае ошибки
-      setError(error.message);
-      // Сбросить состояние деталей фильма в случае ошибки
-      setMovieDetails(null);
-    } finally {
-      // Установка флага загрузки в false в любом случае после завершения запроса, независимо от его успешности
-      setIsLoading(false);
-    }
-  };
-
-  // useEffect для выполнения запроса, когда компонент монтируется или изменяется movieId
   useEffect(() => {
-    // Вызов функции fetchChosenMovie при изменении movieId
-    fetchChosenMovie(movieId);
+    // Функция для запроса детальной информации о выбранном фильме
+    const fetchChosenMovie = async id => {
+      try {
+        // Установить флаг загрузки в true перед запросом
+        setIsLoading(true);
+        // Сбросить состояние ошибки перед запросом
+        setError(null);
+
+        const movieData = await getFilmById(movieId); // Вызываем функцию с movieId
+        setMovieDetails(movieData); // Устанавливаем полученные данные в состояние
+        setError(null);
+
+        setError(null);
+      } catch (error) {
+        // Установка состояния ошибки в случае ошибки
+        setError(error.message);
+        // Сбросить состояние деталей фильма в случае ошибки
+        setMovieDetails(null);
+      } finally {
+        // Установка флага загрузки в false в любом случае после завершения запроса, независимо от его успешности
+        setIsLoading(false);
+      }
+    };
+    fetchChosenMovie(); // Вызываем функцию при монтировании компонента и изменении movieId
   }, [movieId]);
 
   // !!!!Проверка, есть ли данные в movieDetails перед их отображением  КАК РЕАЛИЗОВАТЬ ИНАЧЕ?

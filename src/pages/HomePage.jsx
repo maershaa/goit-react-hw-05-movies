@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import fetchMovies from 'components/api/api';
 import MoviesList from 'components/MoviesList/MoviesList';
 import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
+import getTrendingFilm from 'components/api/getTrendingFilm';
 
 const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,12 +17,12 @@ const HomePage = () => {
   };
 
   // Функция для выполнения запроса
-  const fetchAndSetMovies = async url => {
+  const fetchAndSetMovies = async () => {
     try {
       setIsLoading(true); // Устанавливаем флаг загрузки в true
       setError(null); // Сбрасываем сообщение об ошибке
 
-      const data = await fetchMovies('trending/all/week'); // Выполняем запрос к API
+      const data = await getTrendingFilm(); // Вызываем функцию getTrendingFilm
 
       const movies = data.results; // Получаем новые фильмы
 
