@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import getSearchMovie from 'components/api/getSearchMovie'; // Используем новую функцию получения списка фильмов
+import getSearchMovie from 'components/api/getSearchMovie'; // Используем функцию получения списка фильмов
 import MoviesList from 'components/MoviesList/MoviesList';
 import SearchBox from 'components/SearchBox/SearchBox';
 import Loader from 'components/Loader/Loader';
@@ -22,8 +22,8 @@ const Movies = () => {
       setError(null); // Сбрасываем состояние ошибки перед запросом
 
       const data = await getSearchMovie(queryValue); // Используем новую функцию getSearchMovie для запроса
-
-      setMovies(data); // Устанавливаем полученный список фильмов в состояние
+      console.log('Получены данные:', data);
+      setMovies(data.results); // Устанавливаем полученный список фильмов в состояние
       setError(null); // Сбрасываем состояние ошибки
     } catch (error) {
       setError(error.message); // Устанавливаем сообщение об ошибке в состояние
