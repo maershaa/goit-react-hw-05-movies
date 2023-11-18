@@ -1,4 +1,5 @@
-import styled from 'styled-components'; //npm install styled-components
+import styled from 'styled-components';
+
 export const StyledMovieListItem = styled.li`
   padding: 20px;
   list-style: none;
@@ -22,7 +23,7 @@ export const StyledMovieListItem = styled.li`
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    transition: transform 0.8s ease;
+    transition: transform 1.2s ease; /* Увеличено время перехода */
   }
 
   /* Стили для обратной стороны */
@@ -32,11 +33,12 @@ export const StyledMovieListItem = styled.li`
     height: 100%;
     backface-visibility: hidden;
     transform: rotateY(180deg);
-    transition: transform 0.8s ease;
+    transition: transform 1.2s ease, opacity 1.2s ease; /* Увеличено время перехода */
     background-color: #ffffff;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    display: none;
+    opacity: 0;
+    pointer-events: none;
   }
 
   /* Показываем обратную сторону при наведении */
@@ -46,21 +48,14 @@ export const StyledMovieListItem = styled.li`
 
   .movieCard:hover .movieCardBack {
     transform: rotateY(0deg);
-    display: block;
-
+    opacity: 1;
+    pointer-events: auto;
     background-color: rgb(54, 155, 175);
     color: white;
-
     border-radius: 20px;
   }
 
   .moviePoster {
     border-radius: 20px;
-  }
-
-  .movieCardFront,
-  .movieCardBack {
-    transition-duration: 0.8s; /* Увеличьте или уменьшите продолжительность по вашему усмотрению */
-    transition-timing-function: ease-in-out; /* Измените функцию сглаживания по вашему выбору */
   }
 `;
