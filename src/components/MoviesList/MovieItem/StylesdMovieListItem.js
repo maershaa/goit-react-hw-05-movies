@@ -35,7 +35,6 @@ export const StyledMovieListItem = styled.li`
     transform: rotateY(180deg);
     transition: transform 1.2s ease, opacity 1.2s ease; /* Увеличено время перехода */
     background-color: #ffffff;
-    padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     opacity: 0;
     pointer-events: none;
@@ -53,9 +52,22 @@ export const StyledMovieListItem = styled.li`
     background-color: rgb(54, 155, 175);
     color: white;
     border-radius: 20px;
+
+    overflow-x: auto;
   }
 
   .moviePoster {
     border-radius: 20px;
+  }
+
+  .front {
+    padding-left: 10px;
+    padding-top: 10px;
+  }
+
+  .overviewText {
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 `;
