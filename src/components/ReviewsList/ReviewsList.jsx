@@ -3,6 +3,19 @@ import ReviewsListItem from 'components/ReviewsList//ReviewsListItem/ReviewsList
 import { StyledReviewsList } from 'components/ReviewsList/StyledReviewsList';
 
 const ReviewsList = ({ reviews }) => {
+  // Проверяем наличие отзывов или их пустоту
+  if (!reviews || reviews.length === 0) {
+    return (
+      <StyledReviewsList>
+        <div>
+          <h2>No reviews found</h2>
+          <p>Sorry, there are no reviews for this movie yet.</p>
+        </div>
+      </StyledReviewsList>
+    );
+  }
+
+  // Отображение отзывов, если они доступны
   return (
     <StyledReviewsList>
       {reviews.map(review => (

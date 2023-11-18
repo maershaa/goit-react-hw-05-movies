@@ -40,4 +40,30 @@ export const StyledMovieDetails = styled.div`
 
     padding: 0;
   }
+
+  .addInfoList {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    list-style: none;
+
+    padding: 0;
+  }
+
+  .addInfoItem {
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color: rgba(54, 155, 175, 0.7);
+
+    width: 50px;
+
+    text-align: center;
+  }
+
+  .header-link {
+    color: white;
+
+    text-decoration: none;
+  }
 `;

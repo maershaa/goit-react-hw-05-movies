@@ -132,13 +132,13 @@ const MovieDetails = () => {
             ))}
           </ul>
           <h3>Additional Information</h3>
-          <ul>
-            <li>
+          <ul className="addInfoList">
+            <li className="addInfoItem">
               <Link className="header-link" to="cast">
                 Cast
               </Link>
             </li>
-            <li>
+            <li className="addInfoItem">
               <Link className="header-link" to="reviews">
                 Reviews
               </Link>
