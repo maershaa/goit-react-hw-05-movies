@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ActorsList from 'components/ActorsList/ActorsList';
 import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
-import getCastMovie from 'components/api/getCastMovie';
+import { getCastMovie } from 'components/api/api.js';
 
 const Cast = () => {
   const { movieId } = useParams();

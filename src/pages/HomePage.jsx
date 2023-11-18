@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MoviesList from 'components/MoviesList/MoviesList';
 import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
-import getTrendingFilm from 'components/api/getTrendingFilm';
+import { getTrendingFilm } from 'components/api/api.js';
 
 const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);

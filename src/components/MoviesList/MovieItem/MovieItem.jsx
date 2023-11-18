@@ -32,13 +32,9 @@ const MovieItem = ({ id, poster_path, title, overview }) => {
             alt={title}
             className="moviePoster front"
           />
-          <div className="itemContainer">
-            <h3 className="front">{title}</h3>
-          </div>
         </div>
         <div className={`movieCardBack ${isHovered ? 'hovered' : ''}`}>
           <h3 className="front">{title}</h3>
-
           <p className="overviewText back">{overview}</p>
         </div>
       </div>

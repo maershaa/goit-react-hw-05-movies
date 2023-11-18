@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ReviewsList from 'components/ReviewsList/ReviewsList';
 import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
-import getReviewMovie from 'components/api/getReviewMovie';
+import { getReviewMovie } from 'components/api/api.js';
 
 const Reviews = () => {
   const { movieId } = useParams();

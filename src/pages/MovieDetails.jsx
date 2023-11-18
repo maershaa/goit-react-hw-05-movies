@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams, Outlet } from 'react-router-dom';
 // import Cast from 'pages/Cast';
 // import Reviews from 'pages/Reviews';
-import getFilmById from 'components/api/getFilmById';
+import { getFilmById } from 'components/api/api.js';
 import Loader from 'components/Loader/Loader'; //npm install react-loader-spinner --save
 import GoBackBtn from 'components/GoBackBtn/GoBackBtn';
 

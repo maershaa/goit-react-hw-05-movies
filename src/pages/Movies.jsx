@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import getSearchMovie from 'components/api/getSearchMovie'; // Используем функцию получения списка фильмов
+import { getSearchMovie } from 'components/api/api.js'; // Используем функцию получения списка фильмов
 import MoviesList from 'components/MoviesList/MoviesList';
 import SearchBox from 'components/SearchBox/SearchBox';
 import Loader from 'components/Loader/Loader';
