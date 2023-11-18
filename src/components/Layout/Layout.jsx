@@ -34,6 +34,10 @@ const Layout = ({ children }) => {
         </header>
 
         <main>{children}</main>
+
+        <footer>
+          <p className="info">Site crafted by Valeria Maers © 2023</p>
+        </footer>
       </StyledLayout>
     </Suspense>
   );

@@ -61,4 +61,7 @@ export const StyledLayout = styled.div`
     margin-top: 20px;
     border-radius: 8px;
   }
+  .info {
+    text-align: center;
+  }
 `;
