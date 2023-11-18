@@ -4,12 +4,12 @@ export const StyledActorItem = styled.li`
   width: 120px;
   min-width: 120px;
   /* height: 220x; */
-  background-color: white;
+
   color: black;
 
   margin: 10px 4px 10px 10px;
 
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   padding-bottom: 10px;
   border-radius: 10px;
 

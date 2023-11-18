@@ -12,22 +12,19 @@ const Reviews = () => {
   const [error, setError] = useState(null);
   const [reviews, setReviews] = useState(null);
 
-  const fetchReviews = async id => {
+  const fetchReviews = async (id, currentPage) => {
     try {
       // Установить флаг загрузки в true перед запросом
       setIsLoading(true);
       // Сбросить состояние ошибки перед запросом
       setError(null);
       // Запрос к API для получения детальной информации о фильме по его ID
-      const data = await fetchMovies(
-        `movie/${id}/reviews`,
-        // fetch('https://api.themoviedb.org/3/movie/872585/reviews?language=en-US&page=1', options)
-        {
-          params: {
-            language: 'en-US',
-          },
-        }
-      );
+      const data = await fetchMovies(`movie/${id}/reviews`, {
+        language: 'en-US',
+        page: currentPage,
+      });
+      // fetch('https://api.themoviedb.org/3/movie/872585/reviews?language=en-US&page=1', options)
+
       // Установка детальной информации о фильме в состояние
       setReviews(data);
       console.log('fetchReviews', data);
@@ -46,7 +43,7 @@ const Reviews = () => {
   // useEffect для выполнения запроса, когда компонент монтируется или изменяется movieId
   useEffect(() => {
     // Вызов функции fetchChosenMovie при изменении movieId
-    fetchReviews(movieId);
+    fetchReviews(movieId, 1);
   }, [movieId]);
 
   return (

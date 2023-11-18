@@ -27,9 +27,7 @@ const Cast = () => {
         `movie/${id}/credits`,
         // fetch('https://api.themoviedb.org/3/movie/872585/credits?language=en-US', options)
         {
-          params: {
-            language: 'en-US',
-          },
+          language: 'en-US',
         }
       );
       // Установка детальной информации о фильме в состояние

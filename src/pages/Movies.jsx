@@ -28,7 +28,7 @@ const Movies = () => {
         page: currentPage,
       });
 
-      setMovies(data.results); // Устанавливаем полученный список фильмов в состояние
+      setMovies(data); // Устанавливаем полученный список фильмов в состояние
       setError(null); // Сбрасываем состояние ошибки
     } catch (error) {
       setError(error.message); // Устанавливаем сообщение об ошибке в состояние
@@ -52,6 +52,10 @@ const Movies = () => {
 
     setInputValue(value); // Устанавливаем значение поискового запроса в состояние ввода
     setSearchParams({ query: value }); // Записываем слово для поиска в параметры строки запроса
+
+    // !Добавляем console.log для проверки значения перед вызовом fetchMoviesBySearchQuery
+    console.log('Search query:', value);
+
     fetchMoviesBySearchQuery(value, 1); // Вызов функции для получения фильмов по запросу
   };
 
