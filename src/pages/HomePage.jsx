@@ -7,8 +7,6 @@ import { getTrendingFilm } from 'components/api/api.js';
 const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  // const [inputValue, setInputValue] = useState('');
-  // const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState(null); // Состояние для хранения
 
   const navigate = useNavigate();

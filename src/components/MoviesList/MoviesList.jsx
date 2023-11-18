@@ -23,6 +23,7 @@ const MoviesList = ({ movies }) => {
             poster_path={movie.poster_path}
             title={movie.title}
             overview={movie.overview}
+            raiting={movie.vote_average}
             // Используем функцию для загрузки выбранного фильма при клике
             onClick={() => handleMovieClick(movie.id)}
           ></MovieItem>

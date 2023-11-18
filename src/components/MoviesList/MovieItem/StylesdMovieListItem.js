@@ -70,4 +70,21 @@ export const StyledMovieListItem = styled.li`
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
+  .ratingCircle {
+    position: absolute;
+    padding: 5px;
+    bottom: -18px;
+    left: -18px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ffcc00; /* Цвет фона для круглого значка */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #ffffff; /* Цвет текста внутри круглого значка */
+    font-size: 20px; /* Размер текста */
+  }
 `;
